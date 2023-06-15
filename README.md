@@ -25,7 +25,7 @@ The app defines following requests:
 ## JSON Request Body
 Add "paste":
 
-Before load "paste" you need to specify time, during the "paste" will be available, and access. The pastes may be PUPLIC (available to everyone) and UNLISTED (link access).
+Before loading "paste" you need to specify time, during the "paste" will be available, and access type. The "pastes" may be PUPLIC (available to everyone) and UNLISTED (link access).
 ```
 {
     "data" : "my text",
