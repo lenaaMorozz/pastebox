@@ -1,6 +1,7 @@
 package com.mer.pastebox.repository;
 
 import com.mer.pastebox.exception.NotFoundEntityException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
@@ -11,6 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 @Repository
+@Slf4j
 public class PasteBoxRepositoryMap implements PasteBoxRepository {
 
     private final Map<String, PasteBoxEntity> vault = new ConcurrentHashMap<>();
@@ -20,6 +22,7 @@ public class PasteBoxRepositoryMap implements PasteBoxRepository {
         PasteBoxEntity pasteBoxEntity = vault.get(hash);
 
         if (pasteBoxEntity == null) {
+            log.error("Pastebox not found with hash {} ", hash);
             throw new NotFoundEntityException("Pastebox not found with hash " + hash);
         }
         return vault.get(hash);

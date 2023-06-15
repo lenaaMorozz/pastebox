@@ -5,6 +5,7 @@ import com.mer.pastebox.api.response.PasteBoxResponse;
 import com.mer.pastebox.api.response.PasteBoxUrlResponse;
 import com.mer.pastebox.service.PasteBoxService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 

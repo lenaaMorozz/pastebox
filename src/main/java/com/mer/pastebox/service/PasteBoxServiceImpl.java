@@ -7,6 +7,7 @@ import com.mer.pastebox.api.response.PasteBoxUrlResponse;
 import com.mer.pastebox.repository.PasteBoxEntity;
 import com.mer.pastebox.repository.PasteBoxRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class PasteBoxServiceImpl implements PasteBoxService {
 
     private final String host = "http://pastebox.ru";
@@ -47,6 +49,7 @@ public class PasteBoxServiceImpl implements PasteBoxService {
         pasteBoxEntity.setPublic(request.getPublicStatus() == PublicStatus.PUBLIC);
         pasteBoxEntity.setLifetime(LocalDateTime.now().plusSeconds(request.getExpirationTimeSeconds()));
         repository.add(pasteBoxEntity);
+        log.info("Add paste {}", hash);
         return new PasteBoxUrlResponse(host + "/" + pasteBoxEntity.getHash());
     }
 
